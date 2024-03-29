@@ -8,106 +8,106 @@ vas.sound_queue_cd = 0
 
 vas.hookSounds = {
     --Usual hazard
-    ["entering_pulsar"] = "",
-    ["entering_sun"] = "",
-    ["entering_asteroid"] = "",
-    ["fire_start"] = "",
-    ["breach_start"] = "",
-    ["asb_detected"] = "",
-    ["asb_willhit"] = "",
+    ["entering_pulsar"] = 1,
+    ["entering_sun"] = 1,
+    ["entering_asteroid"] = 1,
+    ["fire_start"] = 1,
+    ["breach_start"] = 1,
+    ["asb_detected"] = 1,
+    ["asb_willhit"] = 1,
 
     --Boarding
-    ["boarder_enemy"] = "",
-    ["boarder_friendly"] = "",
-    ["mc_enemy"] = "",
-    ["mc_friendly"] = "",
-    ["friendly_lowhp"] = "",
-    ["friendly_power_ready"] = "",
+    ["boarder_enemy"] = 1,
+    ["boarder_friendly"] = 1,
+    ["mc_enemy"] = 1,
+    ["mc_friendly"] = 1,
+    ["friendly_lowhp"] = 1,
+    ["friendly_power_ready"] = 1,
 
     --Weapon
-    ["weapon_ready"] = "",
-    ["weapon_fire"] = "",
+    ["weapon_ready"] = 1,
+    ["weapon_fire"] = 1,
 
     --Drone
-    ["drone_launch"] = "",
-    ["drone_destroyed"] = "",
+    ["drone_launch"] = 1,
+    ["drone_destroyed"] = 1,
 
     --System
-    ["shield_damaged"] = "",
-    ["shield_ion"] = "",
-    ["shield_destroyed"] = "",
-    ["shield_hacked"] = "",
+    ["shield_damaged"] = 1,
+    ["shield_ion"] = 1,
+    ["shield_destroyed"] = 1,
+    ["shield_hacked"] = 1,
 
-    ["weapon_damaged"] = "",
-    ["weapon_ion"] = "",
-    ["weapon_destroyed"] = "",
-    ["weapon_hacked"] = "",
+    ["weapon_damaged"] = 1,
+    ["weapon_ion"] = 1,
+    ["weapon_destroyed"] = 1,
+    ["weapon_hacked"] = 1,
 
-    ["reactor_damaged"] = "",
-    ["reactor_ion"] = "",
-    ["reactor_destroyed"] = "",
-    ["reactor_hacked"] = "",
+    ["reactor_damaged"] = 1,
+    ["reactor_ion"] = 1,
+    ["reactor_destroyed"] = 1,
+    ["reactor_hacked"] = 1,
 
-    ["piloting_damaged"] = "",
-    ["piloting_ion"] = "",
-    ["piloting_destroyed"] = "",
-    ["piloting_hacked"] = "",
+    ["piloting_damaged"] = 1,
+    ["piloting_ion"] = 1,
+    ["piloting_destroyed"] = 1,
+    ["piloting_hacked"] = 1,
 
-    ["cloak_damaged"] = "",
-    ["cloak_ion"] = "",
-    ["cloak_destroyed"] = "",
-    ["cloak_hacked"] = "",
+    ["cloak_damaged"] = 1,
+    ["cloak_ion"] = 1,
+    ["cloak_destroyed"] = 1,
+    ["cloak_hacked"] = 1,
 
-    ["artilery_damaged"] = "",
-    ["artilery_ion"] = "",
-    ["artilery_destroyed"] = "",
-    ["artilery_hacked"] = "",
+    ["artilery_damaged"] = 1,
+    ["artilery_ion"] = 1,
+    ["artilery_destroyed"] = 1,
+    ["artilery_hacked"] = 1,
 
-    ["dronebay_damaged"] = "",
-    ["dronebay_ion"] = "",
-    ["dronebay_destroyed"] = "",
-    ["dronebay_hacked"] = "",
+    ["dronebay_damaged"] = 1,
+    ["dronebay_ion"] = 1,
+    ["dronebay_destroyed"] = 1,
+    ["dronebay_hacked"] = 1,
 
-    ["mc_damaged"] = "",
-    ["mc_ion"] = "",
-    ["mc_destroyed"] = "",
-    ["mc_hacked"] = "",
+    ["mc_damaged"] = 1,
+    ["mc_ion"] = 1,
+    ["mc_destroyed"] = 1,
+    ["mc_hacked"] = 1,
 
-    ["sensors_damaged"] = "",
-    ["sensors_ion"] = "",
-    ["sensors_destroyed"] = "",
-    ["sensors_hacked"] = "",
+    ["sensors_damaged"] = 1,
+    ["sensors_ion"] = 1,
+    ["sensors_destroyed"] = 1,
+    ["sensors_hacked"] = 1,
 
-    ["oxygen_damaged"] = "",
-    ["oxygen_ion"] = "",
-    ["oxygen_destroyed"] = "",
-    ["oxygen_hacked"] = "",
+    ["oxygen_damaged"] = 1,
+    ["oxygen_ion"] = 1,
+    ["oxygen_destroyed"] = 1,
+    ["oxygen_hacked"] = 1,
 
-    ["teleporter_damaged"] = "",
-    ["teleporter_ion"] = "",
-    ["teleporter_destroyed"] = "",
-    ["teleporter_hacked"] = "",
+    ["teleporter_damaged"] = 1,
+    ["teleporter_ion"] = 1,
+    ["teleporter_destroyed"] = 1,
+    ["teleporter_hacked"] = 1,
 
-    ["battery_damaged"] = "",
-    ["battery_ion"] = "",
-    ["battery_destroyed"] = "",
-    ["battery_hacked"] = "",
+    ["battery_damaged"] = 1,
+    ["battery_ion"] = 1,
+    ["battery_destroyed"] = 1,
+    ["battery_hacked"] = 1,
 
-    ["hacking_damaged"] = "",
-    ["hacking_ion"] = "",
-    ["hacking_destroyed"] = "",
-    ["hacking_hacked"] = "",
+    ["hacking_damaged"] = 1,
+    ["hacking_ion"] = 1,
+    ["hacking_destroyed"] = 1,
+    ["hacking_hacked"] = 1,
 
     --Ship Status
-    ["hull_alert"] = "",
-    ["hull_alert_2"] = "",
-    ["hull_alert_3"] = "",
+    ["hull_alert"] = 1,
+    ["hull_alert_2"] = 1,
+    ["hull_alert_3"] = 1,
 
     --Action
-    ["jumping_nocombat"] = "",
-    ["jumping_combat"] = "",
-    ["pause_active"] = "",
-    ["pause_inactive"] = "",
+    ["jumping_nocombat"] = 1,
+    ["jumping_combat"] = 1,
+    ["pause_active"] = 1,
+    ["pause_inactive"] = 1,
 }
 
 function vas:playSound(sound)
@@ -122,7 +122,8 @@ end
 
 function vas:playSoundQueue()
     local sound = table.remove(vas.sound_queue, 1)
-    Hyperspace:GetSoundControl():PlaySoundMix(sound, -1, false)
+    local num = math.random(1, vas.hookSounds[sound])
+    Hyperspace:GetSoundControl():PlaySoundMix(sound.."_"..tostring(num), -1, false)
     vas.sound_queue_cd = vas.sound_queue_set_cd
 end
 
