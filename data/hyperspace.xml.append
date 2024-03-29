@@ -1,0 +1,6 @@
+<FTL>
+<scripts>
+	<script>data/core.lua</script>
+	<script>data/hook.lua</script>
+</scripts>
+</FTL>
