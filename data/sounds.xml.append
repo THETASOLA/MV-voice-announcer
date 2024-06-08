@@ -1,4 +1,3 @@
---Usual hazard
 <entering_pulsar volume="10">va/entering_pulsar_1.ogg</entering_pulsar>
 <entering_sun volume="10">va/entering_sun_1.ogg</entering_sun>
 <entering_asteroid volume="10">va/entering_asteroid_1.ogg</entering_asteroid>
@@ -7,7 +6,6 @@
 <asb_detected volume="10">va/asb_detected_1.ogg</asb_detected>
 <asb_willhit volume="10">va/asb_willhit_1.ogg</asb_willhit>
 
---Boarding
 <boarder_enemy volume="10">va/boarder_enemy_1.ogg</boarder_enemy>
 <boarder_friendly volume="10">va/boarder_friendly_1.ogg</boarder_friendly>
 <mc_enemy volume="10">va/mc_enemy_1.ogg</mc_enemy>
@@ -15,15 +13,12 @@
 <friendly_lowhp volume="10">va/friendly_lowhp_1.ogg</friendly_lowhp>
 <friendly_power_ready volume="10">va/friendly_power_ready_1.ogg</friendly_power_ready>
 
---Weapon
 <weapon_ready volume="10">va/weapon_ready_1.ogg</weapon_ready>
 <weapon_fire volume="10">va/weapon_fire_1.ogg</weapon_fire>
 
---Drone
 <space_drone_launch volume="10">va/space_drone_launch_1.ogg</space_drone_launch>
 <space_drone_destroyed volume="10">va/space_drone_destroyed_1.ogg</space_drone_destroyed>
 
---System
 <shield_damaged volume="10">va/shield_damaged_1.ogg</shield_damaged>
 <shield_ion volume="10">va/shield_ion_1.ogg</shield_ion>
 <shield_destroyed volume="10">va/shield_destroyed_1.ogg</shield_destroyed>
@@ -94,12 +89,10 @@
 <temporal_destroyed volume="10">va/temporal_destroyed_1.ogg</temporal_destroyed>
 <temporal_hacked volume="10">va/temporal_hacked_1.ogg</temporal_hacked>
 
---Ship Status
 <hull_alert_75 volume="10">va/hull_alert_75_1.ogg</hull_alert_75>
 <hull_alert_50 volume="10">va/hull_alert_50_1.ogg</hull_alert_50>
 <hull_alert_25 volume="10">va/hull_alert_25_1.ogg</hull_alert_25>
 
---Action
 <jumping_nocombat volume="10">va/jumping_nocombat_1.ogg</jumping_nocombat>
 <jumping_combat volume="10">va/jumping_combat_1.ogg</jumping_combat>
 <pause_true volume="10">va/pause_true_1.ogg</pause_true>
