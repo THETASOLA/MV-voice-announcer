@@ -4,9 +4,10 @@ import os
 sound = {
     "entering_pulsar": "Entering pulsar",
     "entering_sun": "Entering sun vicinity",
-    "entering_asteroid": "Entering asteroid field",
+    "entering_storm": "Entering asteroid field",
+    "entering_nebula": "Entering nebula",
     "fire_start": "Fire detected",
-    "breach_start": "Breach detected",
+    "low_oxygen": "Low oxygen detected",
     "asb_detected": "ASB detected",
     "asb_willhit": "ASB on hit vector",
 
