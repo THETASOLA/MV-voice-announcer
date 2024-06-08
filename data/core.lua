@@ -126,6 +126,8 @@ end
 
 function vas:playSoundQueue()
     local sound = table.remove(vas.sound_queue, 1)
+    local num = math.random(1, vas.hookSounds[sound])
+    local sound_path = sound.."_"..tostring(num)
     print("Playing sound: "..sound)
     Hyperspace.Sounds:PlaySoundMix(sound, -1, false)
     vas.sound_queue_cd = vas.sound_queue_set_cd
@@ -141,3 +143,7 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 
     vas:playSoundQueue()
 end)
+
+function mods.s(sound)
+    Hyperspace.Sounds:PlaySoundMix(sound, -1, false)
+end
