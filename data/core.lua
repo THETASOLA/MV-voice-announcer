@@ -126,7 +126,8 @@ end
 
 function vas:playSoundQueue()
     local sound = table.remove(vas.sound_queue, 1)
-    Hyperspace:GetSoundControl():PlaySoundMix(sound, -1, false)
+    print("Playing sound: "..sound)
+    Hyperspace.Sounds:PlaySoundMix(sound, -1, false)
     vas.sound_queue_cd = vas.sound_queue_set_cd
 end
 
