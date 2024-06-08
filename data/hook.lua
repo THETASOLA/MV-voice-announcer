@@ -105,6 +105,15 @@ local function ship_loop(ship)
         end
         userdata_weapon.charge = weapon.cooldown.first
     end
+
+    -- System Hacked
+    for system in vter(ship.vSystemList) do
+        local userdata_system = userdata_table(system, "mods.vasystem.systems_hacked")
+        if system.iHackEffect > 0 and system.iHackEffect ~= userdata_system.hacked then
+            vas:playSound(system_name[system.iSystemType].."_hacked")
+        end
+        userdata_system.hacked = system.bHacked
+    end
 end
 
 local fire_delay = 0
