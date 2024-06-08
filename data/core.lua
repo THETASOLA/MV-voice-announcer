@@ -3,7 +3,7 @@ local vas = mods.vasystem
 
 vas.sound_queue = {}
 vas.sound_queue_max = 5
-vas.sound_queue_set_cd = 3 --I don't want the voiceline to overlap
+vas.sound_queue_set_cd = 2 --I don't want the voiceline to overlap
 vas.sound_queue_cd = 0
 
 vas.hookSounds = {
@@ -153,3 +153,7 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 
     vas:playSoundQueue()
 end)
+
+function mods.v(sound)
+    Hyperspace.Sounds:PlaySoundMix(sound, -1, false)
+end

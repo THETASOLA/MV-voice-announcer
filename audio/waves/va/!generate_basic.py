@@ -4,7 +4,7 @@ import os
 sound = {
     "entering_pulsar": "Entering pulsar",
     "entering_sun": "Entering sun vicinity",
-    "entering_storm": "Entering asteroid field",
+    "entering_storm": "Entering nebula storm",
     "entering_nebula": "Entering nebula",
     "fire_start": "Fire detected",
     "low_oxygen": "Low oxygen detected",

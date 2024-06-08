@@ -51,7 +51,7 @@ local function system_damage(ship, _, roomId, damage)
     local sys_name = system_name[system.iSystemType]
 
     if damage.iDamage > 0 and system.healthState.first ~= 0 then
-        if system.healthState.second - system.healthState.first >= damage.iDamage then
+        if system.healthState.first <= damage.iDamage then
             vas:removeSound(sys_name.."_ion")
             vas:removeSound(sys_name.."_damaged")
             vas:playSound(sys_name.."_destroyed")
@@ -102,8 +102,10 @@ local abs_hit_track = false
 local fire_track = false
 local oxygen_track = false
 local drone_track = 0
+local arriving_space = -1
 local function ship_loop(ship)
     if Hyperspace.ships.enemy == ship then return end
+    local space = Hyperspace.App.world.space
 
     -- Weapon Charge handling
     for weapon in vter(ship:GetWeaponList()) do
@@ -123,23 +125,23 @@ local function ship_loop(ship)
         userdata_system.hacked = system.iHackEffect
     end
 
-    -- ABS detect
-    local space = Hyperspace.App.world.space
-    if space.bPDS and space.bPDS ~= abs_track then
-        vas:playSound("asb_detected")
-    end
-    abs_track = space.bPDS
-
-    if space.pdsCountdown == 0 and not abs_hit_track then
-        vas:playSound("asb_willhit")
-        abs_hit_track = true
-    end
-    if space.pdsCountdown > 0 then abs_hit_track = false end
+    -- ABS detect (not exposed by HS)
+    
+    --if space.bPDS and space.bPDS ~= abs_track then
+    --    vas:playSound("asb_detected")
+    --end
+    --abs_track = space.bPDS
+--
+    --if space.pdsCountdown == 0 and not abs_hit_track then
+    --    vas:playSound("asb_willhit")
+    --    abs_hit_track = true
+    --end
+    --if space.pdsCountdown > 0 then abs_hit_track = false end
 
     -- handle fire
     local fire = false
     for room in vter (ship.ship.vRoomList) do
-        if ship.GetFireCount(room.iRoomId) > 0 then
+        if ship:GetFireCount(room.iRoomId) > 0 then
             fire = true
         end
     end
@@ -151,16 +153,16 @@ local function ship_loop(ship)
     if not fire then fire_track = false end
 
     -- handle low oxygen
-    if ship:GetOxygenPercentage() < 0.2 and not oxygen_track then
+    if ship:GetOxygenPercentage() < 25 and not oxygen_track then
         vas:playSound("low_oxygen")
         oxygen_track = true
     end
-    if ship:GetOxygenPercentage() > 0.25 then oxygen_track = false end
+    if ship:GetOxygenPercentage() > 25 then oxygen_track = false end
 
     --handle drone
     local drone_count = 0
-    for _ in vter(ship:GetDroneList()) do
-        drone_count = drone_count + 1
+    for d in vter(space.drones) do
+        if d:GetOwnerId() == 0 then drone_count = drone_count + 1 end
     end
 
     if drone_count > drone_track then
@@ -168,9 +170,19 @@ local function ship_loop(ship)
     elseif drone_count < drone_track then
         vas:playSound("space_drone_destroyed")
     end
+    drone_track = drone_count
 
-    drone_track = drone_track or 0
+    -- handles entering space
+    if arriving_space > 0 then
+        arriving_space = math.max(arriving_space - Hyperspace.FPS.SpeedFactor/16, 0)
+        if arriving_space == 0 then
+            if space.bStorm then vas:playSound("entering_storm") elseif space.bNebula then vas:playSound("entering_nebula") end
+            if space.pulsarLevel then vas:playSound("entering_pulsar") end
+            if space.sunLevel then vas:playSound("entering_sun") end
 
+            arriving_space = -1
+        end
+    end
     -- Delays for other functions
     fire_delay = math.max(fire_delay - Hyperspace.FPS.SpeedFactor/16, 0)
 end
@@ -190,13 +202,7 @@ end
 
 local function jump_arrive()
     vas:clearQueue()
-    local space = Hyperspace.App.world.space
-
-    if space.bNebula then vas:playSound("entering_nebula") end
-    if space.bStorm then vas:playSound("entering_storm") end
-    if space.pulsarLevel then vas:playSound("entering_pulsar") end
-    if space.sunLevel then vas:playSound("entering_sun") end
-    
+    arriving_space = 0.5
 end
 
 
