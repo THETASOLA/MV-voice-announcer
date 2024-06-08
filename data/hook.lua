@@ -42,12 +42,14 @@ local function system_damage(ship, _, roomId, damage)
     if damage.iDamage > 0 then
         if system.fMaxDamage - system.fDamage <= damage.iDamage then
             vas:playSound(sys_name.."_destroyed")
-            return
+        else
+            vas:playSound("system_damaged")
         end
-        vas:playSound("system_damaged")
     elseif damage.iIonDamage > 0 then
         vas:playSound("system_ion")
     end
+
+    return Defines.Chain.Continue
 end
 
 local function hull_damage(shipM, _, loc, damage)
@@ -65,6 +67,8 @@ local function hull_damage(shipM, _, loc, damage)
             vas:playSound("hull_alert_75")
         end
     end
+
+    return Defines.Chain.Continue
 end
 
 local function jump_away(ship)
@@ -92,10 +96,74 @@ local function ship_loop(ship)
             vas:playSound("pause_false")
         end
     end
+
+    -- Weapon Charge handling
+    for weapon in vter(ship:GetWeaponList()) do
+        local userdata_weapon = userdata_table(weapon, "mods.vasystem.weapons_charge")
+        if weapon.cooldown.first == weapon.cooldown.second and userdata_weapon.charge ~= weapon.cooldown.first then
+            vas:playSound("weapon_charge")
+        end
+        userdata_weapon.charge = weapon.cooldown.first
+    end
 end
 
+local fire_delay = 0
+local function weapon_fire(_, weapon)
+    fire_delay = math.max(fire_delay - Hyperspace.FPS.SpeedFactor/16, 0)
+    if weapon.iShipId == 1 and fire_delay ~= 0 then return end
 
+    vas:playSound("weapon_fire")
+    fire_delay = 2
+end
+
+local function crew_loop(crew)
+    local userdata_crew = userdata_table(crew, "mods.vasystem.crew")
+    local enemy = crew.iShipId == 1
+
+    if crew.bMindControlled == 1 and crew.bMindControlled ~= userdata_crew.mind_controlled then
+        if enemy then
+            vas:playSound("mc_enemy")
+        else
+            vas:playSound("mc_friendly")
+        end
+    end
+    userdata_crew.mind_controlled = crew.bMindControlled
+
+    if crew.currentShipId ~= userdata_crew.shipID then
+        if enemy then
+            vas:playSound("boarder_enemy")
+        else
+            vas:playSound("boarder_friendly")
+        end
+    end
+    userdata_crew.shipID = crew.currentShipId
+
+    if enemy then return end
+
+    if crew.health.first / crew.health.second <= 0.25 and not userdata_crew.low_hp_alert then
+        vas:playSound("crew_alert_25")
+        userdata_crew.low_hp_alert = true
+    end
+
+    if crew.health.first / crew.health.second > 0.25 then
+        userdata_crew.low_hp_alert = false
+    end
+end
+
+--System
 script.on_internal_event(Defines.InternalEvents.DAMAGE_SYSTEM, system_damage)
+
+--Ship Status
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, hull_damage)
+
+--Action
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, jump_away)
+
+--Weapon
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, weapon_fire)
+
+--Boarding
+script.on_internal_event(Defines.InternalEvents.CREW_LOOP, crew_loop)
+
+--Action/Weapon
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, ship_loop)

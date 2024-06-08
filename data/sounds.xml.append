@@ -11,7 +11,6 @@
 <mc_enemy volume="10">va/mc_enemy_1.ogg</mc_enemy>
 <mc_friendly volume="10">va/mc_friendly_1.ogg</mc_friendly>
 <friendly_lowhp volume="10">va/friendly_lowhp_1.ogg</friendly_lowhp>
-<friendly_power_ready volume="10">va/friendly_power_ready_1.ogg</friendly_power_ready>
 
 <weapon_ready volume="10">va/weapon_ready_1.ogg</weapon_ready>
 <weapon_fire volume="10">va/weapon_fire_1.ogg</weapon_fire>

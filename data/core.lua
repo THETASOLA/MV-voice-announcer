@@ -22,7 +22,6 @@ vas.hookSounds = {
     ["mc_enemy"] = 1,
     ["mc_friendly"] = 1,
     ["friendly_lowhp"] = 1,
-    ["friendly_power_ready"] = 1,
 
     --Weapon
     ["weapon_ready"] = 1,
