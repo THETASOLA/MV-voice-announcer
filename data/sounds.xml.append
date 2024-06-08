@@ -1,9 +1,10 @@
 <FTL>
 <entering_pulsar volume="10">va/entering_pulsar_1.ogg</entering_pulsar>
 <entering_sun volume="10">va/entering_sun_1.ogg</entering_sun>
-<entering_asteroid volume="10">va/entering_asteroid_1.ogg</entering_asteroid>
+<entering_nebula volume="10">va/entering_nebula_1.ogg</entering_nebula>
+<entering_storm volume="10">va/entering_storm_1.ogg</entering_storm>
 <fire_start volume="10">va/fire_start_1.ogg</fire_start>
-<breach_start volume="10">va/breach_start_1.ogg</breach_start>
+<low_oxygen volume="10">va/low_oxygen_1.ogg</low_oxygen>
 <asb_detected volume="10">va/asb_detected_1.ogg</asb_detected>
 <asb_willhit volume="10">va/asb_willhit_1.ogg</asb_willhit>
 <boarder_enemy volume="10">va/boarder_enemy_1.ogg</boarder_enemy>

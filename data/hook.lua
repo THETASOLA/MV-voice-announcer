@@ -52,18 +52,20 @@ local function system_damage(ship, _, roomId, damage)
 
     if damage.iDamage > 0 and system.healthState.first ~= 0 then
         if system.healthState.second - system.healthState.first >= damage.iDamage then
+            vas:removeSound(sys_name.."_ion")
+            vas:removeSound(sys_name.."_damaged")
             vas:playSound(sys_name.."_destroyed")
         else
             vas:playSound(sys_name.."_damaged")
         end
-    elseif damage.iIonDamage > 0 then
+    elseif damage.iIonDamage > 0 and system.healthState.first ~= 0 then
         vas:playSound(sys_name.."_ion")
     end
 
     return Defines.Chain.Continue
 end
 
-local function hull_damage(shipM, _, loc, damage)
+local function hull_damage(shipM, _, _, damage)
     if Hyperspace.ships.enemy == shipM then return end
 
     local ship = shipM.ship
@@ -95,20 +97,13 @@ local function jump_away(ship)
 end
 
 local last_pause = false
-
+local abs_track = false
+local abs_hit_track = false
+local fire_track = false
+local oxygen_track = false
+local drone_track = 0
 local function ship_loop(ship)
     if Hyperspace.ships.enemy == ship then return end
-
-    -- Pause handling
-    local gui = Hyperspace.App.gui
-    if gui.bPaused ~= last_pause then
-        last_pause = gui.bPaused
-        if last_pause then
-            vas:playSound("pause_true")
-        else
-            vas:playSound("pause_false")
-        end
-    end
 
     -- Weapon Charge handling
     for weapon in vter(ship:GetWeaponList()) do
@@ -128,8 +123,80 @@ local function ship_loop(ship)
         userdata_system.hacked = system.iHackEffect
     end
 
+    -- ABS detect
+    local space = Hyperspace.App.world.space
+    if space.bPDS and space.bPDS ~= abs_track then
+        vas:playSound("asb_detected")
+    end
+    abs_track = space.bPDS
+
+    if space.pdsCountdown == 0 and not abs_hit_track then
+        vas:playSound("asb_willhit")
+        abs_hit_track = true
+    end
+    if space.pdsCountdown > 0 then abs_hit_track = false end
+
+    -- handle fire
+    local fire = false
+    for room in vter (ship.ship.vRoomList) do
+        if ship.GetFireCount(room.iRoomId) > 0 then
+            fire = true
+        end
+    end
+
+    if fire and not fire_track then
+        vas:playSound("fire_start")
+        fire_track = true
+    end
+    if not fire then fire_track = false end
+
+    -- handle low oxygen
+    if ship:GetOxygenPercentage() < 0.2 and not oxygen_track then
+        vas:playSound("low_oxygen")
+        oxygen_track = true
+    end
+    if ship:GetOxygenPercentage() > 0.25 then oxygen_track = false end
+
+    --handle drone
+    local drone_count = 0
+    for _ in vter(ship:GetDroneList()) do
+        drone_count = drone_count + 1
+    end
+
+    if drone_count > drone_track then
+        vas:playSound("space_drone_launch")
+    elseif drone_count < drone_track then
+        vas:playSound("space_drone_destroyed")
+    end
+
+    drone_track = drone_track or 0
+
     -- Delays for other functions
     fire_delay = math.max(fire_delay - Hyperspace.FPS.SpeedFactor/16, 0)
+end
+
+local function on_tick()
+    -- Pause handling
+    local gui = Hyperspace.App.gui
+    if gui.bPaused ~= last_pause then
+        last_pause = gui.bPaused
+        if last_pause then
+            vas:playSound("pause_true")
+        else
+            vas:playSound("pause_false")
+        end
+    end
+end
+
+local function jump_arrive()
+    vas:clearQueue()
+    local space = Hyperspace.App.world.space
+
+    if space.bNebula then vas:playSound("entering_nebula") end
+    if space.bStorm then vas:playSound("entering_storm") end
+    if space.pulsarLevel then vas:playSound("entering_pulsar") end
+    if space.sunLevel then vas:playSound("entering_sun") end
+    
 end
 
 
@@ -183,6 +250,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, hull_damage)
 
 --Action
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, jump_away)
+script.on_internal_event(Defines.InternalEvents.ON_TICK, on_tick)
 
 --Weapon
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, weapon_fire)
@@ -190,5 +258,8 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, weapon_fire)
 --Boarding
 script.on_internal_event(Defines.InternalEvents.CREW_LOOP, crew_loop)
 
---Action/Weapon
+--Hazard
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, jump_arrive)
+
+--Action/Weapon/Hazard
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, ship_loop)

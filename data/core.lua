@@ -7,12 +7,13 @@ vas.sound_queue_set_cd = 3 --I don't want the voiceline to overlap
 vas.sound_queue_cd = 0
 
 vas.hookSounds = {
-    --Usual hazard
+    --Hazard
     ["entering_pulsar"] = 1,
     ["entering_sun"] = 1,
-    ["entering_asteroid"] = 1,
+    ["entering_storm"] = 1,
+    ["entering_nebula"] = 1,
     ["fire_start"] = 1,
-    ["breach_start"] = 1,
+    ["low_oxygen"] = 1,
     ["asb_detected"] = 1,
     ["asb_willhit"] = 1,
 
@@ -137,13 +138,18 @@ function vas:clearQueue()
     vas.sound_queue = {}
 end
 
+function vas:removeSound(sound)
+    for i, v in ipairs(vas.sound_queue) do
+        if v == sound then
+            table.remove(vas.sound_queue, i)
+            return
+        end
+    end
+end
+
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
     vas.sound_queue_cd = math.max(vas.sound_queue_cd - Hyperspace.FPS.SpeedFactor/16, 0)
     if #vas.sound_queue == 0 or vas.sound_queue_cd ~= 0 then return end
 
     vas:playSoundQueue()
 end)
-
-function mods.s(sound)
-    Hyperspace.Sounds:PlaySoundMix(sound, -1, false)
-end
