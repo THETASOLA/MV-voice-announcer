@@ -1,0 +1,106 @@
+--Usual hazard
+<entering_pulsar volume="10">va/entering_pulsar_1.ogg</entering_pulsar>
+<entering_sun volume="10">va/entering_sun_1.ogg</entering_sun>
+<entering_asteroid volume="10">va/entering_asteroid_1.ogg</entering_asteroid>
+<fire_start volume="10">va/fire_start_1.ogg</fire_start>
+<breach_start volume="10">va/breach_start_1.ogg</breach_start>
+<asb_detected volume="10">va/asb_detected_1.ogg</asb_detected>
+<asb_willhit volume="10">va/asb_willhit_1.ogg</asb_willhit>
+
+--Boarding
+<boarder_enemy volume="10">va/boarder_enemy_1.ogg</boarder_enemy>
+<boarder_friendly volume="10">va/boarder_friendly_1.ogg</boarder_friendly>
+<mc_enemy volume="10">va/mc_enemy_1.ogg</mc_enemy>
+<mc_friendly volume="10">va/mc_friendly_1.ogg</mc_friendly>
+<friendly_lowhp volume="10">va/friendly_lowhp_1.ogg</friendly_lowhp>
+<friendly_power_ready volume="10">va/friendly_power_ready_1.ogg</friendly_power_ready>
+
+--Weapon
+<weapon_ready volume="10">va/weapon_ready_1.ogg</weapon_ready>
+<weapon_fire volume="10">va/weapon_fire_1.ogg</weapon_fire>
+
+--Drone
+<space_drone_launch volume="10">va/space_drone_launch_1.ogg</space_drone_launch>
+<space_drone_destroyed volume="10">va/space_drone_destroyed_1.ogg</space_drone_destroyed>
+
+--System
+<shield_damaged volume="10">va/shield_damaged_1.ogg</shield_damaged>
+<shield_ion volume="10">va/shield_ion_1.ogg</shield_ion>
+<shield_destroyed volume="10">va/shield_destroyed_1.ogg</shield_destroyed>
+<shield_hacked volume="10">va/shield_hacked_1.ogg</shield_hacked>
+
+<weapon_damaged volume="10">va/weapon_damaged_1.ogg</weapon_damaged>
+<weapon_ion volume="10">va/weapon_ion_1.ogg</weapon_ion>
+<weapon_destroyed volume="10">va/weapon_destroyed_1.ogg</weapon_destroyed>
+<weapon_hacked volume="10">va/weapon_hacked_1.ogg</weapon_hacked>
+
+<engine_damaged volume="10">va/engine_damaged_1.ogg</engine_damaged>
+<engine_ion volume="10">va/engine_ion_1.ogg</engine_ion>
+<engine_destroyed volume="10">va/engine_destroyed_1.ogg</engine_destroyed>
+<engine_hacked volume="10">va/engine_hacked_1.ogg</engine_hacked>
+
+<pilot_damaged volume="10">va/pilot_damaged_1.ogg</pilot_damaged>
+<pilot_ion volume="10">va/pilot_ion_1.ogg</pilot_ion>
+<pilot_destroyed volume="10">va/pilot_destroyed_1.ogg</pilot_destroyed>
+<pilot_hacked volume="10">va/pilot_hacked_1.ogg</pilot_hacked>
+
+<cloak_damaged volume="10">va/cloak_damaged_1.ogg</cloak_damaged>
+<cloak_ion volume="10">va/cloak_ion_1.ogg</cloak_ion>
+<cloak_destroyed volume="10">va/cloak_destroyed_1.ogg</cloak_destroyed>
+<cloak_hacked volume="10">va/cloak_hacked_1.ogg</cloak_hacked>
+
+<artilery_damaged volume="10">va/artilery_damaged_1.ogg</artilery_damaged>
+<artilery_ion volume="10">va/artilery_ion_1.ogg</artilery_ion>
+<artilery_destroyed volume="10">va/artilery_destroyed_1.ogg</artilery_destroyed>
+<artilery_hacked volume="10">va/artilery_hacked_1.ogg</artilery_hacked>
+
+<drone_damaged volume="10">va/drone_damaged_1.ogg</drone_damaged>
+<drone_ion volume="10">va/drone_ion_1.ogg</drone_ion>
+<drone_destroyed volume="10">va/drone_destroyed_1.ogg</drone_destroyed>
+<drone_hacked volume="10">va/drone_hacked_1.ogg</drone_hacked>
+
+<mind_damaged volume="10">va/mind_damaged_1.ogg</mind_damaged>
+<mind_ion volume="10">va/mind_ion_1.ogg</mind_ion>
+<mind_destroyed volume="10">va/mind_destroyed_1.ogg</mind_destroyed>
+<mind_hacked volume="10">va/mind_hacked_1.ogg</mind_hacked>
+
+<sensor_damaged volume="10">va/sensor_damaged_1.ogg</sensor_damaged>
+<sensor_ion volume="10">va/sensor_ion_1.ogg</sensor_ion>
+<sensor_destroyed volume="10">va/sensor_destroyed_1.ogg</sensor_destroyed>
+<sensor_hacked volume="10">va/sensor_hacked_1.ogg</sensor_hacked>
+
+<oxygen_damaged volume="10">va/oxygen_damaged_1.ogg</oxygen_damaged>
+<oxygen_ion volume="10">va/oxygen_ion_1.ogg</oxygen_ion>
+<oxygen_destroyed volume="10">va/oxygen_destroyed_1.ogg</oxygen_destroyed>
+<oxygen_hacked volume="10">va/oxygen_hacked_1.ogg</oxygen_hacked>
+
+<teleporter_damaged volume="10">va/teleporter_damaged_1.ogg</teleporter_damaged>
+<teleporter_ion volume="10">va/teleporter_ion_1.ogg</teleporter_ion>
+<teleporter_destroyed volume="10">va/teleporter_destroyed_1.ogg</teleporter_destroyed>
+<teleporter_hacked volume="10">va/teleporter_hacked_1.ogg</teleporter_hacked>
+
+<battery_damaged volume="10">va/battery_damaged_1.ogg</battery_damaged>
+<battery_ion volume="10">va/battery_ion_1.ogg</battery_ion>
+<battery_destroyed volume="10">va/battery_destroyed_1.ogg</battery_destroyed>
+<battery_hacked volume="10">va/battery_hacked_1.ogg</battery_hacked>
+
+<hacking_damaged volume="10">va/hacking_damaged_1.ogg</hacking_damaged>
+<hacking_ion volume="10">va/hacking_ion_1.ogg</hacking_ion>
+<hacking_destroyed volume="10">va/hacking_destroyed_1.ogg</hacking_destroyed>
+<hacking_hacked volume="10">va/hacking_hacked_1.ogg</hacking_hacked>
+
+<temporal_damaged volume="10">va/temporal_damaged_1.ogg</temporal_damaged>
+<temporal_ion volume="10">va/temporal_ion_1.ogg</temporal_ion>
+<temporal_destroyed volume="10">va/temporal_destroyed_1.ogg</temporal_destroyed>
+<temporal_hacked volume="10">va/temporal_hacked_1.ogg</temporal_hacked>
+
+--Ship Status
+<hull_alert_75 volume="10">va/hull_alert_75_1.ogg</hull_alert_75>
+<hull_alert_50 volume="10">va/hull_alert_50_1.ogg</hull_alert_50>
+<hull_alert_25 volume="10">va/hull_alert_25_1.ogg</hull_alert_25>
+
+--Action
+<jumping_nocombat volume="10">va/jumping_nocombat_1.ogg</jumping_nocombat>
+<jumping_combat volume="10">va/jumping_combat_1.ogg</jumping_combat>
+<pause_true volume="10">va/pause_true_1.ogg</pause_true>
+<pause_false volume="10">va/pause_false_1.ogg</pause_false>
