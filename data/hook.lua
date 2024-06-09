@@ -89,7 +89,7 @@ end
 local function jump_away(ship)
     if Hyperspace.ships.enemy == ship then return end
 
-    if Hyperspace.ships.enemy then -- TODO identify if the player is fighting when jumping 
+    if Hyperspace.ships.enemy and Hyperspace.ships.enemy.weaponSystem and Hyperspace.ships.enemy.weaponSystem:Powered() then -- TODO identify if the opposite ship is hostile
         vas:playSound("jumping_combat")
     else
         vas:playSound("jumping_nocombat")
@@ -100,9 +100,11 @@ local last_pause = false
 local abs_track = false
 local abs_hit_track = false
 local fire_track = false
+local charge_delay = 0
 local oxygen_track = false
 local drone_track = 0
-local arriving_space = -1
+local arriving_delay = -1
+local hack_track = false
 local function ship_loop(ship)
     if Hyperspace.ships.enemy == ship then return end
     local space = Hyperspace.App.world.space
@@ -110,33 +112,34 @@ local function ship_loop(ship)
     -- Weapon Charge handling
     for weapon in vter(ship:GetWeaponList()) do
         local userdata_weapon = userdata_table(weapon, "mods.vasystem.weapons_charge")
-        if weapon.cooldown.first == weapon.cooldown.second and userdata_weapon.charge ~= weapon.cooldown.first then
-            vas:playSound("weapon_charge")
+        if weapon.cooldown.first == weapon.cooldown.second and userdata_weapon.charge ~= weapon.cooldown.first and charge_delay == 0 then
+            vas:playSound("weapon_ready")
+            charge_delay = 2
         end
         userdata_weapon.charge = weapon.cooldown.first
     end
 
     -- System Hacked
     for system in vter(ship.vSystemList) do
-        local userdata_system = userdata_table(system, "mods.vasystem.systems_hacked")
-        if system.iHackEffect > 0 and system.iHackEffect ~= userdata_system.hacked then
+        if ship:IsSystemHacked(system.iSystemType) > 1 and not hack_track then
             vas:playSound(system_name[system.iSystemType].."_hacked")
+            hack_track = system.iSystemType
         end
-        userdata_system.hacked = system.iHackEffect
     end
+    if hack_track and ship:IsSystemHacked(hack_track) < 2 then hack_track = false end
 
-    -- ABS detect (not exposed by HS)
-    
-    --if space.bPDS and space.bPDS ~= abs_track then
-    --    vas:playSound("asb_detected")
-    --end
-    --abs_track = space.bPDS
---
-    --if space.pdsCountdown == 0 and not abs_hit_track then
-    --    vas:playSound("asb_willhit")
-    --    abs_hit_track = true
-    --end
-    --if space.pdsCountdown > 0 then abs_hit_track = false end
+    --[[ --ABS detect (not exposed by HS)
+    if space.bPDS and space.bPDS ~= abs_track then
+        vas:playSound("asb_detected")
+    end
+    abs_track = space.bPDS
+
+    if space.pdsCountdown == 0 and not abs_hit_track then
+        vas:playSound("asb_willhit")
+        abs_hit_track = true
+    end
+    if space.pdsCountdown > 0 then abs_hit_track = false end
+    ]]
 
     -- handle fire
     local fire = false
@@ -153,18 +156,19 @@ local function ship_loop(ship)
     if not fire then fire_track = false end
 
     -- handle low oxygen
-    if ship:GetOxygenPercentage() < 25 and not oxygen_track then
+    if ship.iShipId == 0 and ship:GetOxygenPercentage() < 25 and not oxygen_track then
         vas:playSound("low_oxygen")
         oxygen_track = true
     end
-    if ship:GetOxygenPercentage() > 25 then oxygen_track = false end
+    if ship.iShipId == 0 and ship:GetOxygenPercentage() > 25 then oxygen_track = false end
 
     --handle drone
     local drone_count = 0
-    for d in vter(space.drones) do
-        if d:GetOwnerId() == 0 then drone_count = drone_count + 1 end
+    if ship.spaceDrones then
+        for d in vter(ship.spaceDrones) do
+            if d.powered and d:GetOwnerId() == 0 then drone_count = drone_count + 1 end
+        end
     end
-
     if drone_count > drone_track then
         vas:playSound("space_drone_launch")
     elseif drone_count < drone_track then
@@ -173,18 +177,20 @@ local function ship_loop(ship)
     drone_track = drone_count
 
     -- handles entering space
-    if arriving_space > 0 then
-        arriving_space = math.max(arriving_space - Hyperspace.FPS.SpeedFactor/16, 0)
-        if arriving_space == 0 then
+    if arriving_delay > 0 then
+        arriving_delay = math.max(arriving_delay - Hyperspace.FPS.SpeedFactor/16, 0)
+        if arriving_delay == 0 then
             if space.bStorm then vas:playSound("entering_storm") elseif space.bNebula then vas:playSound("entering_nebula") end
             if space.pulsarLevel then vas:playSound("entering_pulsar") end
             if space.sunLevel then vas:playSound("entering_sun") end
 
-            arriving_space = -1
+            arriving_delay = -1
         end
     end
+
     -- Delays for other functions
     fire_delay = math.max(fire_delay - Hyperspace.FPS.SpeedFactor/16, 0)
+    charge_delay = math.max(charge_delay - Hyperspace.FPS.SpeedFactor/16, 0)
 end
 
 local function on_tick()
@@ -202,7 +208,7 @@ end
 
 local function jump_arrive()
     vas:clearQueue()
-    arriving_space = 0.5
+    arriving_delay = 0.5
 end
 
 
@@ -217,7 +223,7 @@ local function crew_loop(crew)
     local userdata_crew = userdata_table(crew, "mods.vasystem.crew")
     local enemy = crew.iShipId == 1
 
-    if crew.bMindControlled == 1 and crew.bMindControlled ~= userdata_crew.mind_controlled then
+    if crew.bMindControlled and crew.bMindControlled ~= userdata_crew.mind_controlled then
         if enemy then
             vas:playSound("mc_enemy")
         else
