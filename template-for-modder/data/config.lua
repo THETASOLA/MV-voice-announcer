@@ -119,7 +119,7 @@ vas.sound_queue_set_cd = 2
 ["pause_false"] = 1,
 ]]
 
--- If you plan on only replacing the placeholder sounds, you can do it by heading to your audio/waves/va and placing your own sounds file with the same name (don't forget the _1, _2, _3, etc. at the end of the file name, if they are part of a list of sounds), 
+-- If you plan on only replacing the placeholder sounds, you can do it by heading to your folder at "audio/waves/va" and placing your own sound files with the same name (don't forget the _1, _2, _3, etc. at the end of the file name, if they are part of a list of sounds), 
 -- they will get replaced automatically when the player load your mod AFTER the library
 
 
