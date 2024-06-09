@@ -5,115 +5,123 @@ vas.sound_queue = {}
 vas.sound_queue_max = 5
 vas.sound_queue_set_cd = 2 --I don't want the voiceline to overlap
 vas.sound_queue_cd = 0
+vas.hookSounds = {}
 
-vas.hookSounds = {
-    --Hazard
-    ["entering_pulsar"] = 1,
-    ["entering_sun"] = 1,
-    ["entering_storm"] = 1,
-    ["entering_nebula"] = 1,
-    ["fire_start"] = 1,
-    ["low_oxygen"] = 1,
-    ["asb_detected"] = 1,
-    ["asb_willhit"] = 1,
+function vas:addSound(sound, num, time)
+    vas.hookSounds[sound] = {
+        lSize = num,
+        Time = time or vas.sound_queue_set_cd
+    }
+end
 
-    --Boarding
-    ["boarder_enemy"] = 1,
-    ["boarder_friendly"] = 1,
-    ["mc_enemy"] = 1,
-    ["mc_friendly"] = 1,
-    ["friendly_lowhp"] = 1,
+vas:addSound("entering_pulsar", 1)
+vas:addSound("entering_sun", 1)
+vas:addSound("entering_storm", 1)
+vas:addSound("entering_nebula", 1)
+vas:addSound("fire_start", 1)
+vas:addSound("low_oxygen", 1)
+vas:addSound("asb_detected", 1)
+vas:addSound("asb_willhit", 1)
 
-    --Weapon
-    ["weapon_ready"] = 1,
-    ["weapon_fire"] = 1,
+vas:addSound("boarder_enemy", 1)
+vas:addSound("boarder_friendly", 1)
+vas:addSound("mc_enemy", 1)
+vas:addSound("mc_friendly", 1)
+vas:addSound("friendly_lowhp", 1)
 
-    --Drone
-    ["space_drone_launch"] = 1,
-    ["space_drone_destroyed"] = 1,
+vas:addSound("weapon_ready", 1)
+vas:addSound("weapon_fire", 1)
 
-    --System
-    ["shield_damaged"] = 1,
-    ["shield_ion"] = 1,
-    ["shield_destroyed"] = 1,
-    ["shield_hacked"] = 1,
+vas:addSound("space_drone_launch", 1)
+vas:addSound("space_drone_destroyed", 1)
 
-    ["weapon_damaged"] = 1,
-    ["weapon_ion"] = 1,
-    ["weapon_destroyed"] = 1,
-    ["weapon_hacked"] = 1,
+vas:addSound("shield_damaged", 1)
+vas:addSound("shield_ion", 1)
+vas:addSound("shield_destroyed", 1)
+vas:addSound("shield_hacked", 1)
 
-    ["engine_damaged"] = 1,
-    ["engine_ion"] = 1,
-    ["engine_destroyed"] = 1,
-    ["engine_hacked"] = 1,
+vas:addSound("weapon_damaged", 1)
+vas:addSound("weapon_ion", 1)
+vas:addSound("weapon_destroyed", 1)
+vas:addSound("weapon_hacked", 1)
 
-    ["pilot_damaged"] = 1,
-    ["pilot_ion"] = 1,
-    ["pilot_destroyed"] = 1,
-    ["pilot_hacked"] = 1,
+vas:addSound("engine_damaged", 1)
+vas:addSound("engine_ion", 1)
+vas:addSound("engine_destroyed", 1)
+vas:addSound("engine_hacked", 1)
 
-    ["cloak_damaged"] = 1,
-    ["cloak_ion"] = 1,
-    ["cloak_destroyed"] = 1,
-    ["cloak_hacked"] = 1,
+vas:addSound("pilot_damaged", 1)
+vas:addSound("pilot_ion", 1)
+vas:addSound("pilot_destroyed", 1)
+vas:addSound("pilot_hacked", 1)
 
-    ["artilery_damaged"] = 1,
-    ["artilery_ion"] = 1,
-    ["artilery_destroyed"] = 1,
-    ["artilery_hacked"] = 1,
+vas:addSound("cloak_damaged", 1)
+vas:addSound("cloak_ion", 1)
+vas:addSound("cloak_destroyed", 1)
+vas:addSound("cloak_hacked", 1)
 
-    ["drone_damaged"] = 1,
-    ["drone_ion"] = 1,
-    ["drone_destroyed"] = 1,
-    ["drone_hacked"] = 1,
+vas:addSound("artilery_damaged", 1)
+vas:addSound("artilery_ion", 1)
+vas:addSound("artilery_destroyed", 1)
+vas:addSound("artilery_hacked", 1)
 
-    ["mind_damaged"] = 1,
-    ["mind_ion"] = 1,
-    ["mind_destroyed"] = 1,
-    ["mind_hacked"] = 1,
+vas:addSound("drone_damaged", 1)
+vas:addSound("drone_ion", 1)
+vas:addSound("drone_destroyed", 1)
+vas:addSound("drone_hacked", 1)
 
-    ["sensor_damaged"] = 1,
-    ["sensor_ion"] = 1,
-    ["sensor_destroyed"] = 1,
-    ["sensor_hacked"] = 1,
+vas:addSound("mind_damaged", 1)
+vas:addSound("mind_ion", 1)
+vas:addSound("mind_destroyed", 1)
+vas:addSound("mind_hacked", 1)
 
-    ["oxygen_damaged"] = 1,
-    ["oxygen_ion"] = 1,
-    ["oxygen_destroyed"] = 1,
-    ["oxygen_hacked"] = 1,
+vas:addSound("sensor_damaged", 1)
+vas:addSound("sensor_ion", 1)
+vas:addSound("sensor_destroyed", 1)
+vas:addSound("sensor_hacked", 1)
 
-    ["teleporter_damaged"] = 1,
-    ["teleporter_ion"] = 1,
-    ["teleporter_destroyed"] = 1,
-    ["teleporter_hacked"] = 1,
+vas:addSound("oxygen_damaged", 1)
+vas:addSound("oxygen_ion", 1)
+vas:addSound("oxygen_destroyed", 1)
+vas:addSound("oxygen_hacked", 1)
 
-    ["battery_damaged"] = 1,
-    ["battery_ion"] = 1,
-    ["battery_destroyed"] = 1,
-    ["battery_hacked"] = 1,
+vas:addSound("teleporter_damaged", 1)
+vas:addSound("teleporter_ion", 1)
+vas:addSound("teleporter_destroyed", 1)
+vas:addSound("teleporter_hacked", 1)
 
-    ["hacking_damaged"] = 1,
-    ["hacking_ion"] = 1,
-    ["hacking_destroyed"] = 1,
-    ["hacking_hacked"] = 1,
+vas:addSound("battery_damaged", 1)
+vas:addSound("battery_ion", 1)
+vas:addSound("battery_destroyed", 1)
+vas:addSound("battery_hacked", 1)
 
-    ["temporal_damaged"] = 1,
-    ["temporal_ion"] = 1,
-    ["temporal_destroyed"] = 1,
-    ["temporal_hacked"] = 1,
+vas:addSound("hacking_damaged", 1)
+vas:addSound("hacking_ion", 1)
+vas:addSound("hacking_destroyed", 1)
+vas:addSound("hacking_hacked", 1)
 
-    --Ship Status
-    ["hull_alert_75"] = 1,
-    ["hull_alert_50"] = 1,
-    ["hull_alert_25"] = 1,
+vas:addSound("temporal_damaged", 1)
+vas:addSound("temporal_ion", 1)
+vas:addSound("temporal_destroyed", 1)
+vas:addSound("temporal_hacked", 1)
 
-    --Action
-    ["jumping_nocombat"] = 1,
-    ["jumping_combat"] = 1,
-    ["pause_true"] = 1,
-    ["pause_false"] = 1,
-}
+vas:addSound("hull_alert_75", 1)
+vas:addSound("hull_alert_50", 1)
+vas:addSound("hull_alert_25", 1)
+
+vas:addSound("jumping_nocombat", 1)
+vas:addSound("jumping_combat", 1)
+vas:addSound("pause_true", 1)
+vas:addSound("pause_false", 1)
+
+function vas:removeSound(sound)
+    for i, v in ipairs(vas.sound_queue) do
+        if v == sound then
+            table.remove(vas.sound_queue, i)
+            return
+        end
+    end
+end
 
 function vas:playSound(sound)
     if not vas.hookSounds[sound] then return end
@@ -127,18 +135,17 @@ end
 
 function vas:playSoundQueue()
     local sound = table.remove(vas.sound_queue, 1)
-    local num = math.random(1, vas.hookSounds[sound])
-    local sound_path = sound.."_"..tostring(num)
-    print("Playing sound: "..sound)
-    Hyperspace.Sounds:PlaySoundMix(sound, -1, false)
-    vas.sound_queue_cd = vas.sound_queue_set_cd
+    local num = math.random(1, vas.hookSounds[sound].lSize)
+    local sound_path = sound..tostring(num)
+    Hyperspace.Sounds:PlaySoundMix(sound_path, -1, false)
+    vas.sound_queue_cd = vas.hookSounds[sound].Time
 end
 
 function vas:clearQueue()
     vas.sound_queue = {}
 end
 
-function vas:removeSound(sound)
+function vas:removeSoundQueue(sound)
     for i, v in ipairs(vas.sound_queue) do
         if v == sound then
             table.remove(vas.sound_queue, i)
@@ -154,6 +161,6 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
     vas:playSoundQueue()
 end)
 
-function mods.v(sound)
+function mods.v(sound) -- this is for debug
     Hyperspace.Sounds:PlaySoundMix(sound, -1, false)
 end

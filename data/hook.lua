@@ -52,8 +52,8 @@ local function system_damage(ship, _, roomId, damage)
 
     if damage.iDamage > 0 and system.healthState.first ~= 0 then
         if system.healthState.first <= damage.iDamage then
-            vas:removeSound(sys_name.."_ion")
-            vas:removeSound(sys_name.."_damaged")
+            vas:removeSoundQueue(sys_name.."_ion")
+            vas:removeSoundQueue(sys_name.."_damaged")
             vas:playSound(sys_name.."_destroyed")
         else
             vas:playSound(sys_name.."_damaged")

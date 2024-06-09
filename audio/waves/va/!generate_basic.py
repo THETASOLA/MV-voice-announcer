@@ -98,8 +98,8 @@ sound = {
     "hull_alert_50": "Hull integrity at 50%",
     "hull_alert_25": "Hull integrity at 25%",
 
-    "jumping_nocombat": "Jumping to next sector",
-    "jumping_combat": "Jumping during combat",
+    "jumping_nocombat": "Engaging FTL drive",
+    "jumping_combat": "Emergency FTL jump",
     "pause_true": "Game paused",
     "pause_false": "Game resumed"
 }
