@@ -12,111 +12,111 @@ vas.sound_queue_set_cd = 2
 -- This is the list of the currently supported sound events with their list, all having "1" sound in it currently
 --[[
 --Hazard
-["entering_pulsar"] = 1,
-["entering_sun"] = 1,
-["entering_storm"] = 1,
-["entering_nebula"] = 1,
-["fire_start"] = 1,
-["low_oxygen"] = 1,
-["asb_detected"] = 1,
-["asb_willhit"] = 1,
+["va_entering_pulsar"] = 1,
+["va_entering_sun"] = 1,
+["va_entering_storm"] = 1,
+["va_entering_nebula"] = 1,
+["va_fire_start"] = 1,
+["va_low_oxygen"] = 1,
+["va_asb_detected"] = 1,
+["va_asb_willhit"] = 1,
 
 --Boarding
-["boarder_enemy"] = 1,
-["boarder_friendly"] = 1,
-["mc_enemy"] = 1,
-["mc_friendly"] = 1,
-["friendly_lowhp"] = 1,
+["va_boarder_enemy"] = 1,
+["va_boarder_friendly"] = 1,
+["va_mc_enemy"] = 1,
+["va_mc_friendly"] = 1,
+["va_friendly_lowhp"] = 1,
 
 --Weapon
-["weapon_ready"] = 1,
-["weapon_fire"] = 1,
+["va_weapon_ready"] = 1,
+["va_weapon_fire"] = 1,
 
 --Drone
-["space_drone_launch"] = 1,
-["space_drone_destroyed"] = 1,
+["va_space_drone_launch"] = 1,
+["va_space_drone_destroyed"] = 1,
 
 --System
-["shield_damaged"] = 1,
-["shield_ion"] = 1,
-["shield_destroyed"] = 1,
-["shield_hacked"] = 1,
+["va_shield_damaged"] = 1,
+["va_shield_ion"] = 1,
+["va_shield_destroyed"] = 1,
+["va_shield_hacked"] = 1,
 
-["weapon_damaged"] = 1,
-["weapon_ion"] = 1,
-["weapon_destroyed"] = 1,
-["weapon_hacked"] = 1,
+["va_weapon_damaged"] = 1,
+["va_weapon_ion"] = 1,
+["va_weapon_destroyed"] = 1,
+["va_weapon_hacked"] = 1,
 
-["engine_damaged"] = 1,
-["engine_ion"] = 1,
-["engine_destroyed"] = 1,
-["engine_hacked"] = 1,
+["va_engine_damaged"] = 1,
+["va_engine_ion"] = 1,
+["va_engine_destroyed"] = 1,
+["va_engine_hacked"] = 1,
 
-["pilot_damaged"] = 1,
-["pilot_ion"] = 1,
-["pilot_destroyed"] = 1,
-["pilot_hacked"] = 1,
+["va_pilot_damaged"] = 1,
+["va_pilot_ion"] = 1,
+["va_pilot_destroyed"] = 1,
+["va_pilot_hacked"] = 1,
 
-["cloak_damaged"] = 1,
-["cloak_ion"] = 1,
-["cloak_destroyed"] = 1,
-["cloak_hacked"] = 1,
+["va_cloak_damaged"] = 1,
+["va_cloak_ion"] = 1,
+["va_cloak_destroyed"] = 1,
+["va_cloak_hacked"] = 1,
 
-["artilery_damaged"] = 1,
-["artilery_ion"] = 1,
-["artilery_destroyed"] = 1,
-["artilery_hacked"] = 1,
+["va_artilery_damaged"] = 1,
+["va_artilery_ion"] = 1,
+["va_artilery_destroyed"] = 1,
+["va_artilery_hacked"] = 1,
 
-["drone_damaged"] = 1,
-["drone_ion"] = 1,
-["drone_destroyed"] = 1,
-["drone_hacked"] = 1,
+["va_drone_damaged"] = 1,
+["va_drone_ion"] = 1,
+["va_drone_destroyed"] = 1,
+["va_drone_hacked"] = 1,
 
-["mind_damaged"] = 1,
-["mind_ion"] = 1,
-["mind_destroyed"] = 1,
-["mind_hacked"] = 1,
+["va_mind_damaged"] = 1,
+["va_mind_ion"] = 1,
+["va_mind_destroyed"] = 1,
+["va_mind_hacked"] = 1,
 
-["sensor_damaged"] = 1,
-["sensor_ion"] = 1,
-["sensor_destroyed"] = 1,
-["sensor_hacked"] = 1,
+["va_sensor_damaged"] = 1,
+["va_sensor_ion"] = 1,
+["va_sensor_destroyed"] = 1,
+["va_sensor_hacked"] = 1,
 
-["oxygen_damaged"] = 1,
-["oxygen_ion"] = 1,
-["oxygen_destroyed"] = 1,
-["oxygen_hacked"] = 1,
+["va_oxygen_damaged"] = 1,
+["va_oxygen_ion"] = 1,
+["va_oxygen_destroyed"] = 1,
+["va_oxygen_hacked"] = 1,
 
-["teleporter_damaged"] = 1,
-["teleporter_ion"] = 1,
-["teleporter_destroyed"] = 1,
-["teleporter_hacked"] = 1,
+["va_teleporter_damaged"] = 1,
+["va_teleporter_ion"] = 1,
+["va_teleporter_destroyed"] = 1,
+["va_teleporter_hacked"] = 1,
 
-["battery_damaged"] = 1,
-["battery_ion"] = 1,
-["battery_destroyed"] = 1,
-["battery_hacked"] = 1,
+["va_battery_damaged"] = 1,
+["va_battery_ion"] = 1,
+["va_battery_destroyed"] = 1,
+["va_battery_hacked"] = 1,
 
-["hacking_damaged"] = 1,
-["hacking_ion"] = 1,
-["hacking_destroyed"] = 1,
-["hacking_hacked"] = 1,
+["va_hacking_damaged"] = 1,
+["va_hacking_ion"] = 1,
+["va_hacking_destroyed"] = 1,
+["va_hacking_hacked"] = 1,
 
-["temporal_damaged"] = 1,
-["temporal_ion"] = 1,
-["temporal_destroyed"] = 1,
-["temporal_hacked"] = 1,
+["va_temporal_damaged"] = 1,
+["va_temporal_ion"] = 1,
+["va_temporal_destroyed"] = 1,
+["va_temporal_hacked"] = 1,
 
 --Ship Status
-["hull_alert_75"] = 1,
-["hull_alert_50"] = 1,
-["hull_alert_25"] = 1,
+["va_hull_alert_75"] = 1,
+["va_hull_alert_50"] = 1,
+["va_hull_alert_25"] = 1,
 
 --Action
-["jumping_nocombat"] = 1,
-["jumping_combat"] = 1,
-["pause_true"] = 1,
-["pause_false"] = 1,
+["va_jumping_nocombat"] = 1,
+["va_jumping_combat"] = 1,
+["va_pause_true"] = 1,
+["va_pause_false"] = 1,
 ]]
 
 -- If you plan on only replacing the placeholder sounds, you can do it by heading to your folder at "audio/waves/va" and placing your own sound files with the same name (don't forget the _1, _2, _3, etc. at the end of the file name, if they are part of a list of sounds), 
@@ -125,35 +125,35 @@ vas.sound_queue_set_cd = 2
 
 -- If you wish for a sound event to play from a list of sounds, you can update the number that way:
 --[[
-vas:addSound(hull_alert_75, 2)
+vas:addSound("va_hull_alert_75", 2)
 ]]
 -- hull_alert_75 will now play a random sound from a list of 2 sounds
 
 -- you can also override the default cooldown between each sound in the queue for this specific sound event:
 --[[
-vas:addSound(hull_alert_75, 2, 8)
+vas:addSound("va_hull_alert_75", 2, 8)
 ]]
 -- hull_alert_75 will now play a random sound from a list of 2 sounds, and the following sound in the list will have to wait 8 seconds before playing
 
 
 -- You can also use the same method to add your own sound event:
 --[[
-vas:addSound(my_custom_event, 3)
+vas:addSound("va_my_custom_event", 3)
 ]]
 
 -- You can also remove a sound event from the list (if you do not like it, or have nothing to replace it with):
 --[[
-vas:removeSound(my_custom_event)
+vas:removeSound("va_my_custom_event")
 ]]
 
 
 -- You will have to setup your own callback to trigger the sound events, for example:
 --[[
 local function activate_power(power, ship)
-    vas:playSound("my_custom_event")
+    vas:playSound("va_my_custom_event")
 end
 
 script.on_internal_event(Defines.InternalEvents.ACTIVATE_POWER, activate_power)
 ]]
--- This will trigger the sound event "my_custom_event" when a crew power is activated
+-- This will trigger the sound event "va_my_custom_event" when a crew power is activated
 -- You will also need to add the sounds event to the list of sounds in the file sounds.xml.append
