@@ -52,14 +52,14 @@ local function system_damage(ship, _, roomId, damage)
 
     if damage.iDamage > 0 and system.healthState.first ~= 0 then
         if system.healthState.first <= damage.iDamage then
-            vas:removeSoundQueue(sys_name.."_ion")
-            vas:removeSoundQueue(sys_name.."_damaged")
-            vas:playSound(sys_name.."_destroyed")
+            vas:removeSoundQueue("va_"..sys_name.."_ion")
+            vas:removeSoundQueue("va_"..sys_name.."_damaged")
+            vas:playSound("va_"..sys_name.."_destroyed")
         else
-            vas:playSound(sys_name.."_damaged")
+            vas:playSound("va_"..sys_name.."_damaged")
         end
     elseif damage.iIonDamage > 0 and system.healthState.first ~= 0 then
-        vas:playSound(sys_name.."_ion")
+        vas:playSound("va_"..sys_name.."_ion")
     end
 
     return Defines.Chain.Continue
@@ -75,11 +75,11 @@ local function hull_damage(shipM, _, _, damage)
         local life_ratio = (ship.hullIntegrity.first - damage.iDamage) / ship.hullIntegrity.second
 
         if life_ratio <= 0.25 and old_life_ratio > 0.25 then
-            vas:playSound("hull_alert_25")
+            vas:playSound("va_hull_alert_25")
         elseif life_ratio <= 0.5 and old_life_ratio > 0.5 then
-            vas:playSound("hull_alert_50")
+            vas:playSound("va_hull_alert_50")
         elseif life_ratio <= 0.75 and old_life_ratio > 0.75 then
-            vas:playSound("hull_alert_75")
+            vas:playSound("va_hull_alert_75")
         end
     end
 
@@ -90,9 +90,9 @@ local function jump_away(ship)
     if Hyperspace.ships.enemy == ship then return end
 
     if Hyperspace.ships.enemy and Hyperspace.ships.enemy.weaponSystem and Hyperspace.ships.enemy.weaponSystem:Powered() then -- TODO identify if the opposite ship is hostile
-        vas:playSound("jumping_combat")
+        vas:playSound("va_jumping_combat")
     else
-        vas:playSound("jumping_nocombat")
+        vas:playSound("va_jumping_nocombat")
     end
 end
 
@@ -113,7 +113,7 @@ local function ship_loop(ship)
     for weapon in vter(ship:GetWeaponList()) do
         local userdata_weapon = userdata_table(weapon, "mods.vasystem.weapons_charge")
         if weapon.cooldown.first == weapon.cooldown.second and userdata_weapon.charge ~= weapon.cooldown.first and charge_delay == 0 then
-            vas:playSound("weapon_ready")
+            vas:playSound("va_weapon_ready")
             charge_delay = 2
         end
         userdata_weapon.charge = weapon.cooldown.first
@@ -122,7 +122,7 @@ local function ship_loop(ship)
     -- System Hacked
     for system in vter(ship.vSystemList) do
         if ship:IsSystemHacked(system.iSystemType) > 1 and not hack_track then
-            vas:playSound(system_name[system.iSystemType].."_hacked")
+            vas:playSound("va_"..system_name[system.iSystemType].."_hacked")
             hack_track = system.iSystemType
         end
     end
@@ -150,14 +150,14 @@ local function ship_loop(ship)
     end
 
     if fire and not fire_track then
-        vas:playSound("fire_start")
+        vas:playSound("va_fire_start")
         fire_track = true
     end
     if not fire then fire_track = false end
 
     -- handle low oxygen
     if ship.iShipId == 0 and ship:GetOxygenPercentage() < 25 and not oxygen_track then
-        vas:playSound("low_oxygen")
+        vas:playSound("va_low_oxygen")
         oxygen_track = true
     end
     if ship.iShipId == 0 and ship:GetOxygenPercentage() > 25 then oxygen_track = false end
@@ -170,9 +170,9 @@ local function ship_loop(ship)
         end
     end
     if drone_count > drone_track then
-        vas:playSound("space_drone_launch")
+        vas:playSound("va_space_drone_launch")
     elseif drone_count < drone_track then
-        vas:playSound("space_drone_destroyed")
+        vas:playSound("va_space_drone_destroyed")
     end
     drone_track = drone_count
 
@@ -180,9 +180,9 @@ local function ship_loop(ship)
     if arriving_delay > 0 then
         arriving_delay = math.max(arriving_delay - Hyperspace.FPS.SpeedFactor/16, 0)
         if arriving_delay == 0 then
-            if space.bStorm then vas:playSound("entering_storm") elseif space.bNebula then vas:playSound("entering_nebula") end
-            if space.pulsarLevel then vas:playSound("entering_pulsar") end
-            if space.sunLevel then vas:playSound("entering_sun") end
+            if space.bStorm then vas:playSound("va_entering_storm") elseif space.bNebula then vas:playSound("va_entering_nebula") end
+            if space.pulsarLevel then vas:playSound("va_entering_pulsar") end
+            if space.sunLevel then vas:playSound("va_entering_sun") end
 
             arriving_delay = -1
         end
@@ -199,9 +199,9 @@ local function on_tick()
     if gui.bPaused ~= last_pause then
         last_pause = gui.bPaused
         if last_pause then
-            vas:playSound("pause_true")
+            vas:playSound("va_pause_true")
         else
-            vas:playSound("pause_false")
+            vas:playSound("va_pause_false")
         end
     end
 end
@@ -215,7 +215,7 @@ end
 local function weapon_fire(_, weapon)
     if weapon.iShipId == 1 or fire_delay ~= 0 then return end
 
-    vas:playSound("weapon_fire")
+    vas:playSound("va_weapon_fire")
     fire_delay = 2
 end
 
@@ -225,18 +225,18 @@ local function crew_loop(crew)
 
     if crew.bMindControlled and crew.bMindControlled ~= userdata_crew.mind_controlled then
         if enemy then
-            vas:playSound("mc_enemy")
+            vas:playSound("va_mc_enemy")
         else
-            vas:playSound("mc_friendly")
+            vas:playSound("va_mc_friendly")
         end
     end
     userdata_crew.mind_controlled = crew.bMindControlled
 
     if crew.currentShipId ~= crew.iShipId and crew.currentShipId ~= userdata_crew.shipID then
         if enemy then
-            vas:playSound("boarder_enemy")
+            vas:playSound("va_boarder_enemy")
         else
-            vas:playSound("boarder_friendly")
+            vas:playSound("va_boarder_friendly")
         end
     end
     userdata_crew.shipID = crew.currentShipId
@@ -245,7 +245,7 @@ local function crew_loop(crew)
     userdata_crew.low_hp_alert = userdata_crew.low_hp_alert or false
 
     if (crew.health.first / crew.health.second) <= 0.25 and not userdata_crew.low_hp_alert then
-        vas:playSound("friendly_lowhp")
+        vas:playSound("va_friendly_lowhp")
         userdata_crew.low_hp_alert = true
     end
 
