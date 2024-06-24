@@ -1,5 +1,4 @@
 from gtts import gTTS
-import os
 
 sound = {
     "entering_pulsar": "Entering pulsar",
@@ -49,10 +48,10 @@ sound = {
     "cloak_destroyed": "Cloaking destroyed",
     "cloak_hacked": "Cloaking hacked",
 
-    "artilery_damaged": "Artillery damaged",
-    "artilery_ion": "Artillery ionized",
-    "artilery_destroyed": "Artillery destroyed",
-    "artilery_hacked": "Artillery hacked",
+    "artillery_damaged": "Artillery damaged",
+    "artillery_ion": "Artillery ionized",
+    "artillery_destroyed": "Artillery destroyed",
+    "artillery_hacked": "Artillery hacked",
 
     "drone_damaged": "Drone control damaged",
     "drone_ion": "Drone control ionized",
@@ -83,6 +82,21 @@ sound = {
     "battery_ion": "Battery ionized",
     "battery_destroyed": "Battery destroyed",
     "battery_hacked": "Battery hacked",
+
+    "door_damaged": "door damaged",
+    "door_ion": "door ionized",
+    "door_destroyed": "door destroyed",
+    "door_hacked": "door hacked",
+
+    "medbay_damaged": "medbay damaged",
+    "medbay_ion": "medbay ionized",
+    "medbay_destroyed": "medbay destroyed",
+    "medbay_hacked": "medbay hacked",
+
+    "clonebay_damaged": "clone bay damaged",
+    "clonebay_ion": "clone bay ionized",
+    "clonebay_destroyed": "clone bay destroyed",
+    "clonebay_hacked": "clone bay hacked",
 
     "hacking_damaged": "Hacking system damaged",
     "hacking_ion": "Hacking system ionized",

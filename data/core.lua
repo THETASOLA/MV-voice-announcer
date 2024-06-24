@@ -60,11 +60,6 @@ vas:addSound("va_cloak_ion", 1)
 vas:addSound("va_cloak_destroyed", 1)
 vas:addSound("va_cloak_hacked", 1)
 
-vas:addSound("va_artilery_damaged", 1)
-vas:addSound("va_artilery_ion", 1)
-vas:addSound("va_artilery_destroyed", 1)
-vas:addSound("va_artilery_hacked", 1)
-
 vas:addSound("va_drone_damaged", 1)
 vas:addSound("va_drone_ion", 1)
 vas:addSound("va_drone_destroyed", 1)
@@ -84,6 +79,26 @@ vas:addSound("va_oxygen_damaged", 1)
 vas:addSound("va_oxygen_ion", 1)
 vas:addSound("va_oxygen_destroyed", 1)
 vas:addSound("va_oxygen_hacked", 1)
+
+vas:addSound("va_door_damaged", 1)
+vas:addSound("va_door_ion", 1)
+vas:addSound("va_door_destroyed", 1)
+vas:addSound("va_door_hacked", 1)
+
+vas:addSound("va_medbay_damaged", 1)
+vas:addSound("va_medbay_ion", 1)
+vas:addSound("va_medbay_destroyed", 1)
+vas:addSound("va_medbay_hacked", 1)
+
+vas:addSound("va_clonebay_damaged", 1)
+vas:addSound("va_clonebay_ion", 1)
+vas:addSound("va_clonebay_destroyed", 1)
+vas:addSound("va_clonebay_hacked", 1)
+
+vas:addSound("va_artillery_damaged", 1)
+vas:addSound("va_artillery_ion", 1)
+vas:addSound("va_artillery_destroyed", 1)
+vas:addSound("va_artillery_hacked", 1)
 
 vas:addSound("va_teleporter_damaged", 1)
 vas:addSound("va_teleporter_ion", 1)
