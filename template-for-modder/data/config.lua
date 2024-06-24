@@ -134,41 +134,53 @@ vas.sound_queue_set_cd = 2
 ["va_pause_false"] = 1,
 ]]
 
--- If you plan on only replacing the placeholder sounds, you can do it by heading to your folder at "audio/waves/va" and placing your own sound files with the same name (don't forget the _1, _2, _3, etc. at the end of the file name, if they are part of a list of sounds), 
--- they will get replaced automatically when the player load your mod AFTER the library
+-- To replace the placeholder sounds, place your own sound files in the "audio/waves/va" folder.
+-- Ensure your files have the same names (including the suffix _1, _2, _3, etc., for lists of sounds).
+-- These will automatically replace the placeholders when the player loads your mod after the library.
 
+-- To have a sound event play from a list of sounds, update the number as shown below:
+--[[ 
+vas:addSound(string sound_event, int number_of_sounds, int cooldown (optional))
 
--- If you wish for a sound event to play from a list of sounds, you can update the number that way:
---[[
 vas:addSound("va_hull_alert_75", 2)
+-- This makes "va_hull_alert_75" play a random sound from a list of 2 sounds.
 ]]
--- hull_alert_75 will now play a random sound from a list of 2 sounds
 
--- you can also override the default cooldown between each sound in the queue for this specific sound event:
+-- To override the default cooldown between sounds for a specific event:
 --[[
 vas:addSound("va_hull_alert_75", 2, 8)
+-- This makes "va_hull_alert_75" play a random sound from a list of 2 sounds, with an 8-second cooldown before the next sound plays.
 ]]
--- hull_alert_75 will now play a random sound from a list of 2 sounds, and the following sound in the list will have to wait 8 seconds before playing
 
-
--- You can also use the same method to add your own sound event:
+-- To add your own custom sound event:
 --[[
 vas:addSound("va_my_custom_event", 3)
 ]]
 
--- You can also remove a sound event from the list (if you do not like it, or have nothing to replace it with):
+-- To remove a sound event from the list:
 --[[
 vas:removeSound("va_my_custom_event")
 ]]
 
+-- To add a special sound to an event with a specific probability and optional cooldown (only one per event):
+-- Can be used to either set a high probability sound amidst a list of special one, or a unique sound with a low probability.
+--[[ 
+vas:addSpecialSound(string sound_event, float probability, int cooldown (optional))
 
--- You will have to setup your own callback to trigger the sound events, for example:
+vas:addSpecialSound("va_my_custom_event", 0.5)
+-- or
+vas:addSpecialSound("va_my_custom_event", 0.5, 5)
+]]
+
+-- Set up your own callback to trigger the sound events, for example:
 --[[
 local function activate_power(power, ship)
     vas:playSound("va_my_custom_event")
 end
 
 script.on_internal_event(Defines.InternalEvents.ACTIVATE_POWER, activate_power)
+
+-- This triggers the sound event "va_my_custom_event" when a crew power is activated.
+-- Also, add the sound event to the list in the sounds.xml.append file.
 ]]
--- This will trigger the sound event "va_my_custom_event" when a crew power is activated
--- You will also need to add the sounds event to the list of sounds in the file sounds.xml.append
+

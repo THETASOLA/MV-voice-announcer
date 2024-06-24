@@ -6,5 +6,8 @@
     <va_my_custom_event1 volume="10">va/my_custom_event_1.ogg</va_my_custom_event1>
     <va_my_custom_event2 volume="10">va/my_custom_event_2.ogg</va_my_custom_event2>
     <va_my_custom_event3 volume="10">va/my_custom_event_3.ogg</va_my_custom_event3>
+
+    If you have set up a special sound for the event, you can add it like this:
+    <va_my_custom_eventspecial volume="10">va/my_custom_event_4.ogg</va_my_custom_eventspecial>
 -->
 </FTL>
