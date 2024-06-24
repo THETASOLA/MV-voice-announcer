@@ -3,14 +3,24 @@ local vas = mods.vasystem
 
 vas.sound_queue = {}
 vas.sound_queue_max = 5
-vas.sound_queue_set_cd = 2 --I don't want the voiceline to overlap
+vas.sound_queue_set_cd = 2 --To avoid overlapping
 vas.sound_queue_cd = 0
 vas.hookSounds = {}
+vas.specialHookSounds = {}
 
+-- Add a sound to the event list
 function vas:addSound(sound, num, time)
     vas.hookSounds[sound] = {
         lSize = num,
         Time = time or vas.sound_queue_set_cd
+    }
+end
+
+-- Add a special sound to the event list, can only be one per event, probability is the chance of the sound to be played when encountering the event (ex: 0.5 = 50%)
+function vas:addSpecialSound(sound, probability, time)
+    vas.specialHookSounds[sound] = {
+        Time = time or vas.sound_queue_set_cd,
+        probability = probability
     }
 end
 
@@ -139,7 +149,7 @@ function vas:removeSound(sound)
 end
 
 function vas:playSound(sound)
-    if not vas.hookSounds[sound] then return end
+    if not vas.hookSounds[sound] or vas.specialHookSounds[sound] then return end
     if #vas.sound_queue >= vas.sound_queue_max then return end
     for _, v in ipairs(vas.sound_queue) do
         if v == sound then return end
@@ -152,6 +162,9 @@ function vas:playSoundQueue()
     local sound = table.remove(vas.sound_queue, 1)
     local num = math.random(1, vas.hookSounds[sound].lSize)
     local sound_path = sound..tostring(num)
+    if vas.specialHookSounds[sound] and math.random() < vas.specialHookSounds[sound].probability then
+        sound_path = sound.."special"
+    end
     Hyperspace.Sounds:PlaySoundMix(sound_path, -1, false)
     vas.sound_queue_cd = vas.hookSounds[sound].Time
 end
