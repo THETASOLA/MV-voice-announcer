@@ -1,0 +1,13 @@
+<FTL>
+<!-- 
+    Here's how you add you custom sound to the game.
+    IF you want to add a list of three sounds to play from for the event my_custom_event, you do it like this:
+    
+    <va_my_custom_event1 volume="10">va/my_custom_event_1.ogg</va_my_custom_event1>
+    <va_my_custom_event2 volume="10">va/my_custom_event_2.ogg</va_my_custom_event2>
+    <va_my_custom_event3 volume="10">va/my_custom_event_3.ogg</va_my_custom_event3>
+
+    If you have set up a special sound for the event, you can add it like this:
+    <va_my_custom_eventspecial volume="10">va/my_custom_event_4.ogg</va_my_custom_eventspecial>
+-->
+</FTL>

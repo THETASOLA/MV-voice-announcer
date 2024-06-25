@@ -1,12 +1,13 @@
 <metadata>
-  <title><![CDATA[ FTL - Voice Announcer Library ]]></title>
+  <title><![CDATA[ FTL - "VOICE_NAME" Voice Pack ]]></title>
   <threadUrl><![CDATA[https://ftlmultiverse.boards.net/thread/101/library-voice-announcer-system]]></threadUrl>
-  <author><![CDATA[ Pepson ]]></author>
+  <author><![CDATA[ You ]]></author>
   <version><![CDATA[ 1.0 ]]></version>
   <description>
 <![CDATA[ 
-Contains the library for the voice announcer system.
+Here you can write a description of your mod.
 
+Requires the Voice Announcer Library to work properly.
 Requires the latest version of Hyperspace to work properly.
 ]]>
   </description>

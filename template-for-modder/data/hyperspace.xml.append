@@ -1,0 +1,5 @@
+<FTL>
+<scripts>
+	<script>data/config.lua</script>
+</scripts>
+</FTL>
