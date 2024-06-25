@@ -140,16 +140,16 @@ vas:addSound("va_pause_true", 1)
 vas:addSound("va_pause_false", 1)
 
 function vas:removeSound(sound)
-    for i, v in ipairs(vas.sound_queue) do
+    for i, v in ipairs(vas.hookSounds) do
         if v == sound then
-            table.remove(vas.sound_queue, i)
+            table.remove(vas.hookSounds, i)
             return
         end
     end
 end
 
 function vas:playSound(sound)
-    if not vas.hookSounds[sound] or vas.specialHookSounds[sound] then return end
+    if not vas.hookSounds[sound] or not vas.specialHookSounds[sound] then return end
     if #vas.sound_queue >= vas.sound_queue_max then return end
     for _, v in ipairs(vas.sound_queue) do
         if v == sound then return end
