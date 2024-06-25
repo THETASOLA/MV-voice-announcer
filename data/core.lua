@@ -149,7 +149,7 @@ function vas:removeSound(sound)
 end
 
 function vas:playSound(sound)
-    if not vas.hookSounds[sound] or not vas.specialHookSounds[sound] then return end
+    if not vas.hookSounds[sound] then return end
     if #vas.sound_queue >= vas.sound_queue_max then return end
     for _, v in ipairs(vas.sound_queue) do
         if v == sound then return end
