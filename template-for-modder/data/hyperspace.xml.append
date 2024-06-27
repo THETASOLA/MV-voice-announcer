@@ -1,5 +1,5 @@
 <FTL>
-<scripts>
-	<script>data/config.lua</script>
-</scripts>
+<mod:findLike type="scripts">
+	<mod-append:script>data/config.lua</mod-append:script>
+</mod:findLike>
 </FTL>

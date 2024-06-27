@@ -1,6 +1,6 @@
 <FTL>
-<scripts>
-	<script>data/core.lua</script>
-	<script>data/hook.lua</script>
-</scripts>
+<mod:findLike type="scripts">
+	<mod-append:script>data/core.lua</mod-append:script>
+	<mod-append:script>data/hook.lua</mod-append:script>
+</mod:findLike>
 </FTL>
