@@ -10,10 +10,21 @@ vas.specialHookSounds = {}
 
 -- Add a sound to the event list
 function vas:addSound(sound, num, time)
+    print("Adding sound: "..sound)
     vas.hookSounds[sound] = {
         lSize = num,
         Time = time or vas.sound_queue_set_cd
     }
+end
+
+function vas:removeSound(sound)
+    print("Removing sound: "..sound)
+    for k, v in pairs(vas.hookSounds) do
+        print(k)
+        if k == sound then
+            vas.hookSounds[k] = nil
+        end
+    end
 end
 
 -- Add a special sound to the event list, can only be one per event, probability is the chance of the sound to be played when encountering the event (ex: 0.5 = 50%)
@@ -138,15 +149,6 @@ vas:addSound("va_jumping_nocombat", 1)
 vas:addSound("va_jumping_combat", 1)
 vas:addSound("va_pause_true", 1)
 vas:addSound("va_pause_false", 1)
-
-function vas:removeSound(sound)
-    for i, v in ipairs(vas.hookSounds) do
-        if v == sound then
-            table.remove(vas.hookSounds, i)
-            return
-        end
-    end
-end
 
 function vas:playSound(sound)
     if not vas.hookSounds[sound] then return end
